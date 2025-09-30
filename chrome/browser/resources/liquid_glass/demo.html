@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2024 The L Authors
+  Use of this source code is governed by a BSD-style license that can be
+  found in the LICENSE file.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liquid Glass UI Demo - L Browser</title>
+  <link rel="stylesheet" href="liquid_glass.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                   Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #fff;
+    }
+
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .demo-header h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .demo-header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .demo-section {
+      margin-bottom: 48px;
+    }
+
+    .demo-section h2 {
+      font-size: 28px;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .demo-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .demo-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 400px;
+    }
+
+    /* Sample card content */
+    .card-content h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* Animation on scroll */
+    .animate-on-scroll {
+      opacity: 0;
+      animation: liquid-fade-slide-up 0.6s ease-out forwards;
+    }
+
+    .demo-dialog-trigger {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+    }
+
+    .demo-dialog-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .demo-dialog-overlay.active {
+      display: flex;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <!-- Header -->
+    <div class="demo-header animate-on-scroll">
+      <h1>Liquid Glass UI</h1>
+      <p>Modern glass morphism design for L Browser</p>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="demo-section animate-on-scroll" style="animation-delay: 0.1s;">
+      <h2>Buttons</h2>
+      <div class="demo-buttons">
+        <button class="liquid-glass-button">Primary Action</button>
+        <button class="liquid-glass-button">Secondary</button>
+        <button class="liquid-glass-button">Learn More</button>
+      </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="demo-section animate-on-scroll" style="animation-delay: 0.2s;">
+      <h2>Cards</h2>
+      <div class="demo-grid">
+        <div class="liquid-glass-card liquid-stagger-1 liquid-animate-in">
+          <div class="card-content">
+            <h3>🚀 Fast Performance</h3>
+            <p>Experience lightning-fast browsing with optimized rendering and efficient resource management.</p>
+          </div>
+        </div>
+        <div class="liquid-glass-card liquid-stagger-2 liquid-animate-in">
+          <div class="card-content">
+            <h3>🎨 Beautiful Design</h3>
+            <p>Enjoy a stunning interface with liquid glass effects and smooth animations throughout.</p>
+          </div>
+        </div>
+        <div class="liquid-glass-card liquid-stagger-3 liquid-animate-in">
+          <div class="card-content">
+            <h3>🔒 Secure Browsing</h3>
+            <p>Browse with confidence knowing your data is protected with industry-leading security.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel Section -->
+    <div class="demo-section animate-on-scroll" style="animation-delay: 0.3s;">
+      <h2>Panel</h2>
+      <div class="liquid-glass-panel">
+        <h3 style="margin-bottom: 16px;">Settings Panel</h3>
+        <p style="margin-bottom: 16px; opacity: 0.9;">
+          This is a sample settings panel with the liquid glass effect.
+          Perfect for sidebars and navigation areas.
+        </p>
+        <div class="demo-buttons">
+          <button class="liquid-glass-button">Configure</button>
+          <button class="liquid-glass-button">Advanced</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inputs Section -->
+    <div class="demo-section animate-on-scroll" style="animation-delay: 0.4s;">
+      <h2>Input Fields</h2>
+      <div class="demo-inputs">
+        <input type="text" class="liquid-glass-input" placeholder="Search...">
+        <input type="email" class="liquid-glass-input" placeholder="Email address">
+        <input type="text" class="liquid-glass-input" placeholder="Enter URL">
+      </div>
+    </div>
+
+    <!-- Variants Section -->
+    <div class="demo-section animate-on-scroll" style="animation-delay: 0.5s;">
+      <h2>Variants</h2>
+      <div class="demo-grid">
+        <div class="liquid-glass">
+          <div class="card-content">
+            <h3>Standard Glass</h3>
+            <p>The default liquid glass effect with medium blur.</p>
+          </div>
+        </div>
+        <div class="liquid-glass-frosted">
+          <div class="card-content">
+            <h3>Frosted Glass</h3>
+            <p>Enhanced blur for a stronger frosted effect.</p>
+          </div>
+        </div>
+        <div class="liquid-glass liquid-glass-glossy">
+          <div class="card-content">
+            <h3>Glossy Surface</h3>
+            <p>Added glossy highlight for premium look.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hover Effects Section -->
+    <div class="demo-section animate-on-scroll" style="animation-delay: 0.6s;">
+      <h2>Interactive Effects</h2>
+      <div class="demo-grid">
+        <div class="liquid-glass liquid-lift">
+          <div class="card-content">
+            <h3>Lift on Hover</h3>
+            <p>Hover over this card to see the lift effect.</p>
+          </div>
+        </div>
+        <div class="liquid-glass-card">
+          <div class="card-content">
+            <h3>Card Hover</h3>
+            <p>Default card hover with elevation change.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Trigger Button -->
+    <button class="liquid-glass-button demo-dialog-trigger" onclick="showDialog()">
+      Show Dialog
+    </button>
+  </div>
+
+  <!-- Dialog Overlay -->
+  <div class="demo-dialog-overlay" id="dialogOverlay" onclick="hideDialog(event)">
+    <div class="liquid-glass-dialog" onclick="event.stopPropagation()">
+      <h2 style="margin-bottom: 16px;">Welcome to L Browser</h2>
+      <p style="margin-bottom: 24px; opacity: 0.9;">
+        This is a sample dialog with the liquid glass effect.
+        Notice the smooth entry animation and beautiful glass morphism.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button class="liquid-glass-button" onclick="hideDialog()">Close</button>
+        <button class="liquid-glass-button" onclick="hideDialog()">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showDialog() {
+      document.getElementById('dialogOverlay').classList.add('active');
+    }
+
+    function hideDialog(event) {
+      if (!event || event.target.id === 'dialogOverlay') {
+        document.getElementById('dialogOverlay').classList.remove('active');
+      }
+    }
+
+    // Animate elements on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
