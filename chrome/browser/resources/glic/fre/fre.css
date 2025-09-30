@@ -211,3 +211,128 @@ a[href] {
   cursor: pointer;
   text-decoration: underline;
 }
+
+/* Liquid Glass UI Styling - L Browser */
+/* This provides a translucent, glass-like effect with smooth animations */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(24px) saturate(2);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.liquid-glass:hover {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Pure colors for glass effects - black, white, translucent only */
+.liquid-glass-dark {
+  background: rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(24px) saturate(2);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.liquid-glass-pure-white {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 1);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.liquid-glass-pure-black {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 1);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Smooth liquid animations for UI elements */
+.liquid-smooth-enter {
+  animation: liquid-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes liquid-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.liquid-smooth-fade {
+  animation: liquid-fade 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes liquid-fade {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(24px);
+  }
+}
+
+/* Physical jelly-like glass effect with light bending */
+.liquid-jelly-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  backdrop-filter: blur(32px) saturate(1.8);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-jelly-glass::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.liquid-jelly-glass:hover::before {
+  transform: rotate(45deg) translate(50%, 50%);
+}
+
+.liquid-jelly-glass:hover {
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px) scale(1.02);
+}

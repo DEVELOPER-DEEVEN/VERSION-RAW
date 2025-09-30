@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L Browser - Liquid Glass UI Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .demo-card {
+            padding: 30px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .demo-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Liquid Glass UI Styling - L Browser */
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.13);
+            backdrop-filter: blur(24px) saturate(2);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .liquid-glass:hover {
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .liquid-glass-dark {
+            background: rgba(0, 0, 0, 0.13);
+            backdrop-filter: blur(24px) saturate(2);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .liquid-glass-dark:hover {
+            background: rgba(0, 0, 0, 0.18);
+            box-shadow: 0 12px 48px rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .liquid-glass-dark .demo-title,
+        .liquid-glass-dark .demo-description {
+            color: white;
+        }
+
+        .liquid-glass-pure-white {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(255, 255, 255, 1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .liquid-glass-pure-white:hover {
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.16);
+            transform: translateY(-2px);
+        }
+
+        .liquid-glass-pure-black {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(16px);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .liquid-glass-pure-black:hover {
+            box-shadow: 0 12px 48px rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .liquid-glass-pure-black .demo-title,
+        .liquid-glass-pure-black .demo-description {
+            color: white;
+        }
+
+        .liquid-jelly-glass {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.2) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            backdrop-filter: blur(32px) saturate(1.8);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-jelly-glass::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .liquid-jelly-glass:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .liquid-jelly-glass:hover {
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .liquid-jelly-glass .demo-title,
+        .liquid-jelly-glass .demo-description {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes liquid-enter {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .demo-card {
+            animation: liquid-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .demo-card:nth-child(1) { animation-delay: 0.1s; }
+        .demo-card:nth-child(2) { animation-delay: 0.2s; }
+        .demo-card:nth-child(3) { animation-delay: 0.3s; }
+        .demo-card:nth-child(4) { animation-delay: 0.4s; }
+        .demo-card:nth-child(5) { animation-delay: 0.5s; }
+        .demo-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .info-text {
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>L Browser - Liquid Glass UI</h1>
+    
+    <div class="container">
+        <div class="demo-card liquid-glass">
+            <div class="demo-title">Translucent Glass</div>
+            <div class="demo-description">
+                Base glass effect with 24px blur and translucent white background. Perfect for overlays and panels.
+            </div>
+        </div>
+
+        <div class="demo-card liquid-glass-dark">
+            <div class="demo-title">Dark Glass</div>
+            <div class="demo-description">
+                Dark variant with translucent black background. Maintains the same smooth transitions.
+            </div>
+        </div>
+
+        <div class="demo-card liquid-glass-pure-white">
+            <div class="demo-title">Pure White</div>
+            <div class="demo-description">
+                Nearly opaque white glass (95% opacity) for solid overlays with glass aesthetic.
+            </div>
+        </div>
+
+        <div class="demo-card liquid-glass-pure-black">
+            <div class="demo-title">Pure Black</div>
+            <div class="demo-description">
+                Nearly opaque black glass (95% opacity) for dark mode solid overlays.
+            </div>
+        </div>
+
+        <div class="demo-card liquid-jelly-glass">
+            <div class="demo-title">Jelly Glass</div>
+            <div class="demo-description">
+                Advanced glass with light bending simulation. Features gradient overlay and dynamic light sweep on hover.
+            </div>
+        </div>
+
+        <div class="demo-card liquid-jelly-glass">
+            <div class="demo-title">Physical Properties</div>
+            <div class="demo-description">
+                Mimics real glass with inset shadows for depth and light refraction effects.
+            </div>
+        </div>
+    </div>
+
+    <div class="info-text">
+        <strong>Design Philosophy:</strong> The Liquid Glass UI uses only pure black (#000000), pure white (#FFFFFF), 
+        and translucent variations. All effects feature smooth, liquid-smooth animations with custom cubic-bezier curves 
+        for an organic feel. Hover over the cards to see the interactive effects!
+    </div>
+</body>
+</html>
