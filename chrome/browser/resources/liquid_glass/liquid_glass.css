@@ -1,0 +1,305 @@
+/* Copyright 2024 The L Authors
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file.
+ */
+
+/**
+ * Liquid Glass UI Styles
+ * Inspired by modern glass morphism with smooth, liquid animations
+ * Apply these classes to any element for the Liquid Glass effect
+ */
+
+/* CSS Variables for Liquid Glass Theme */
+:root {
+  --liquid-glass-bg: rgba(255, 255, 255, 0.13);
+  --liquid-glass-bg-hover: rgba(255, 255, 255, 0.18);
+  --liquid-glass-bg-active: rgba(255, 255, 255, 0.23);
+  --liquid-glass-blur: 24px;
+  --liquid-glass-saturation: 2;
+  --liquid-glass-border-radius: 18px;
+  --liquid-glass-border: rgba(255, 255, 255, 0.25);
+  --liquid-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+  --liquid-glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.18);
+  
+  /* Animation timing */
+  --liquid-transition-fast: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --liquid-transition-normal: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --liquid-transition-slow: 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --liquid-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --liquid-ease-in-out: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --liquid-glass-bg: rgba(40, 40, 40, 0.6);
+    --liquid-glass-bg-hover: rgba(50, 50, 50, 0.7);
+    --liquid-glass-bg-active: rgba(60, 60, 60, 0.8);
+    --liquid-glass-border: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Base Liquid Glass Class */
+.liquid-glass {
+  background: var(--liquid-glass-bg);
+  backdrop-filter: blur(var(--liquid-glass-blur)) saturate(var(--liquid-glass-saturation));
+  -webkit-backdrop-filter: blur(var(--liquid-glass-blur)) saturate(var(--liquid-glass-saturation));
+  border-radius: var(--liquid-glass-border-radius);
+  box-shadow: var(--liquid-glass-shadow);
+  border: 1px solid var(--liquid-glass-border);
+  transition: all var(--liquid-transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover state with smooth elevation */
+.liquid-glass:hover {
+  background: var(--liquid-glass-bg-hover);
+  box-shadow: var(--liquid-glass-shadow-hover);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Active/pressed state */
+.liquid-glass:active {
+  background: var(--liquid-glass-bg-active);
+  transform: translateY(0);
+  box-shadow: var(--liquid-glass-shadow);
+}
+
+/* Liquid Glass Button */
+.liquid-glass-button {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-radius: 12px;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all var(--liquid-transition-fast);
+  font-weight: 500;
+  color: inherit;
+}
+
+.liquid-glass-button:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.22), 
+    rgba(255, 255, 255, 0.12));
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.liquid-glass-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Liquid Glass Card */
+.liquid-glass-card {
+  background: linear-gradient(145deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(28px) saturate(2.2);
+  -webkit-backdrop-filter: blur(28px) saturate(2.2);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transition: all var(--liquid-transition-normal);
+}
+
+.liquid-glass-card:hover {
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Liquid Glass Dialog/Modal */
+.liquid-glass-dialog {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(32px) saturate(2.5);
+  -webkit-backdrop-filter: blur(32px) saturate(2.5);
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2);
+  animation: liquid-dialog-enter var(--liquid-transition-normal);
+}
+
+@keyframes liquid-dialog-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Liquid Glass Panel */
+.liquid-glass-panel {
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.06));
+  backdrop-filter: blur(24px) saturate(2);
+  -webkit-backdrop-filter: blur(24px) saturate(2);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transition: all var(--liquid-transition-normal);
+}
+
+/* Liquid Glass Input/Textbox */
+.liquid-glass-input {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all var(--liquid-transition-fast);
+  color: inherit;
+  font-size: 14px;
+}
+
+.liquid-glass-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(100, 150, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.15),
+              0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Liquid Smooth Animations */
+
+/* Fade slide in from top */
+@keyframes liquid-fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade slide in from bottom */
+@keyframes liquid-fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale fade in */
+@keyframes liquid-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shimmer effect */
+@keyframes liquid-shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Pulse glow */
+@keyframes liquid-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(100, 150, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(100, 150, 255, 0.6);
+  }
+}
+
+/* Animation utility classes */
+.liquid-animate-in {
+  animation: liquid-fade-slide-up var(--liquid-transition-normal);
+}
+
+.liquid-animate-in-slow {
+  animation: liquid-fade-slide-up var(--liquid-transition-slow);
+}
+
+.liquid-animate-scale {
+  animation: liquid-scale-in var(--liquid-transition-fast);
+}
+
+.liquid-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+  animation: liquid-shimmer 2s infinite;
+}
+
+/* Stagger animation delays for lists */
+.liquid-stagger-1 { animation-delay: 0.1s; }
+.liquid-stagger-2 { animation-delay: 0.2s; }
+.liquid-stagger-3 { animation-delay: 0.3s; }
+.liquid-stagger-4 { animation-delay: 0.4s; }
+.liquid-stagger-5 { animation-delay: 0.5s; }
+
+/* Frosted glass variant (stronger blur) */
+.liquid-glass-frosted {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(40px) saturate(3);
+  -webkit-backdrop-filter: blur(40px) saturate(3);
+  border-radius: var(--liquid-glass-border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.16);
+}
+
+/* Glossy surface effect */
+.liquid-glass-glossy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0));
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Hover lift effect */
+.liquid-lift {
+  transition: transform var(--liquid-transition-fast),
+              box-shadow var(--liquid-transition-fast);
+}
+
+.liquid-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
