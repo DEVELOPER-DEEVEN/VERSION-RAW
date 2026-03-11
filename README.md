@@ -1,5 +1,7 @@
 # ![Logo](chrome/app/theme/chromium/product_logo_64.png) Chromium
 
+**YES, this repository contains the complete source code of the Chromium browser.**
+
 Chromium is an open-source browser project that aims to build a safer, faster,
 and more stable way for all users to experience the web.
 
